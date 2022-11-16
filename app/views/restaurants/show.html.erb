@@ -1,0 +1,27 @@
+<div class="container mt-3">
+  <div class="my-3 d-flex justify-content-between align-items-center">
+    <h2><%= @restaurant.name %></h2>
+    <%= link_to "Back to list", restaurants_path, class: "btn btn-primary"%>
+  </div>
+
+  <div class="my-3">
+  <p class="p-3 mb-2 bg-light text-dark"><%= @restaurant.address %></p>
+  </div>
+
+  <p><strong>Reviews</strong></p>
+  <% if @restaurant.reviews.empty? %>
+    <p>There is no review for this restaurant</p>
+  <% else %>
+    <ul class="list-group">
+      <% @restaurant.reviews.each do |review| %>
+        <li class="list-group-item"><%= review.content %> - <%= review.rating %>/5</li>
+      <% end %>
+    </ul>
+  <% end %>
+  <br>
+
+  <div class="my-3">
+  <%= link_to "Add a review", new_restaurant_review_path(@restaurant), class: "btn btn-secondary"%>
+  </div>
+
+</div>
